@@ -16,6 +16,6 @@
 
     public override string ToString()
     {
-        return $"{Carne,-10}{Nombre,-25}{Carrera,-20}{Promedio,6:F2}\n";
+        return $"{Carne,-10}{Nombre,-25}{Carrera,-20}{Promedio,8:F2}\n";
     }
 }

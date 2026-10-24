@@ -1,3 +1,5 @@
+using System.Globalization;
+
 class Program
 {
     static ListaEstudiantes lista = new();
@@ -16,7 +18,9 @@ class Program
     static double LeerPromedio()
     {
         double promedio;
-        while (!double.TryParse(Leer("Promedio (0-100): "), out promedio) || promedio < 0 || promedio > 100)
+        // Acepta punto o coma como separador decimal
+        while (!double.TryParse(Leer("Promedio (0-100): ").Replace(',', '.'), NumberStyles.Float,
+                                CultureInfo.InvariantCulture, out promedio) || promedio < 0 || promedio > 100)
         {
             Console.WriteLine("Promedio inválido.");
         }
@@ -32,8 +36,19 @@ class Program
     {
         while (true)
         {
-            Console.Write("\n1.Crear 2.Listar 3.Buscar 4.Actualizar 5.Eliminar " +
-                          "6.Orden nombre 7.Orden promedio 8.Estadísticas 9.Salir\nOpción: ");
+            Console.WriteLine();
+            Console.WriteLine("===== ADMINISTRACIÓN DE ESTUDIANTES =====");
+            Console.WriteLine("  1. Crear");
+            Console.WriteLine("  2. Listar");
+            Console.WriteLine("  3. Buscar");
+            Console.WriteLine("  4. Actualizar");
+            Console.WriteLine("  5. Eliminar");
+            Console.WriteLine("  6. Ordenar por nombre");
+            Console.WriteLine("  7. Ordenar por promedio");
+            Console.WriteLine("  8. Reporte de estadísticas");
+            Console.WriteLine("  9. Salir");
+            Console.WriteLine("==========================================");
+            Console.Write("Seleccione una opción: ");
             string opcion = Console.ReadLine() ?? "";
 
             if (opcion == "9")

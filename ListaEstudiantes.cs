@@ -78,7 +78,8 @@ class ListaEstudiantes
 
     public string Texto()
     {
-        string texto = "";
+        string texto = $"{"Carné",-10}{"Nombre",-25}{"Carrera",-20}{"Promedio",8}\n" +
+                       new string('-', 63) + "\n";
         foreach (var n in Nodos())
         {
             texto += n;
@@ -139,7 +140,8 @@ class ListaEstudiantes
             }
         }
 
-        return $"{Texto()}\n" +
+        return "===== REPORTE DE ESTADÍSTICAS =====\n\n" +
+               $"{Texto()}\n" +
                $"Promedio general: {suma / total:F2}\n" +
                $"Mejor estudiante: {mejor.Nombre} ({mejor.Promedio})\n" +
                $"Estudiante más bajo: {peor.Nombre} ({peor.Promedio})\n";
