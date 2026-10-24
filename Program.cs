@@ -10,8 +10,8 @@ class Program
         do
         {
             Console.Write(mensaje);
-            texto = Console.ReadLine()?.Trim();
-        } while (string.IsNullOrEmpty(texto));
+            texto = Console.ReadLine();
+        } while (texto == null || texto == "");
         return texto;
     }
 
@@ -102,11 +102,11 @@ class Program
             }
             else if (opcion == "6")
             {
-                Mostrar(lista.Ordenar((a, b) => string.Compare(a.Nombre, b.Nombre, true) <= 0));
+                Mostrar(lista.Ordenar((a, b) => ListaEstudiantes.CompararTexto(a.Nombre, b.Nombre) < 0));
             }
             else if (opcion == "7")
             {
-                Mostrar(lista.Ordenar((a, b) => a.Promedio >= b.Promedio));
+                Mostrar(lista.Ordenar((a, b) => a.Promedio > b.Promedio));
             }
             else if (opcion == "8")
             {

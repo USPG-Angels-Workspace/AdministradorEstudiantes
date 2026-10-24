@@ -114,6 +114,34 @@ class ListaEstudiantes
         return resultado;
     }
 
+    // Compara dos textos letra por letra, sin distinguir mayúsculas de minúsculas.
+    // Negativo: a va antes que b. Cero: iguales. Positivo: a va después que b.
+    public static int CompararTexto(string a, string b)
+    {
+        int i = 0;
+        while (i < a.Length && i < b.Length)
+        {
+            char x = Minuscula(a[i]);
+            char y = Minuscula(b[i]);
+            if (x != y)
+            {
+                return x - y;
+            }
+            i++;
+        }
+        return a.Length - b.Length;
+    }
+
+    // Las mayúsculas A-Z están 32 posiciones antes que las minúsculas a-z en la tabla ASCII
+    static char Minuscula(char c)
+    {
+        if (c >= 'A' && c <= 'Z')
+        {
+            return (char)(c + 32);
+        }
+        return c;
+    }
+
     public string Estadisticas()
     {
         if (cabeza == null)
