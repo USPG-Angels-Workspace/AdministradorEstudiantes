@@ -4,9 +4,20 @@ class ListaEstudiantes
 
     public bool Vacia => cabeza == null;
 
+    // Permite recorrer la lista con foreach, siguiendo las referencias entre nodos
+    public IEnumerable<Nodo> Nodos()
+    {
+        var n = cabeza;
+        while (n != null)
+        {
+            yield return n;
+            n = n.Siguiente;
+        }
+    }
+
     public Nodo? Buscar(string carne)
     {
-        for (var n = cabeza; n != null; n = n.Siguiente)
+        foreach (var n in Nodos())
         {
             if (n.Carne == carne)
             {
@@ -68,7 +79,7 @@ class ListaEstudiantes
     public string Texto()
     {
         string texto = "";
-        for (var n = cabeza; n != null; n = n.Siguiente)
+        foreach (var n in Nodos())
         {
             texto += n;
         }
@@ -80,7 +91,7 @@ class ListaEstudiantes
     {
         var resultado = new ListaEstudiantes();
 
-        for (var o = cabeza; o != null; o = o.Siguiente)
+        foreach (var o in Nodos())
         {
             var copia = new Nodo(o.Carne, o.Nombre, o.Carrera, o.Promedio);
 
@@ -114,7 +125,7 @@ class ListaEstudiantes
         double suma = 0;
         int total = 0;
 
-        for (var n = cabeza; n != null; n = n.Siguiente)
+        foreach (var n in Nodos())
         {
             suma += n.Promedio;
             total++;
